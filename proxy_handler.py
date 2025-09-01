@@ -136,7 +136,7 @@ class ProxyHandler:
             logger.warning("SHOW_THINK_TAGS=false is ignored for streaming responses")
 
         # Prepare request data
-        request_data = request.model_dump(exclude_none=True)
+        request_data = request.dict(exclude_none=True)
         request_data["model"] = target_model
 
         # Build request data based on actual Z.AI format from zai-messages.md
@@ -505,7 +505,7 @@ class ProxyHandler:
             raise HTTPException(status_code=503, detail="No valid authentication available")
 
         # Prepare request data
-        request_data = request.model_dump(exclude_none=True)
+        request_data = request.dict(exclude_none=True)
         target_model = "0727-360B-API"  # Map GLM-4.5 to Z.AI model
 
         # Build Z.AI request format
